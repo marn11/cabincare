@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param } from '@nestjs/common';
 import { CabinsService } from './cabins.service';
 import { CabinDto } from './dto/newcabin.dto';
 @Controller('cabins')
@@ -16,5 +16,10 @@ export class CabinsController {
   findAll() {
     return this.cabinsService.getAllCabins();
   }
+  @Get(':id')
+  findById(@Param('id') id: string) {
+    return this.cabinsService.getCabinById(id);
+  }
+
   //   @Put()
 }

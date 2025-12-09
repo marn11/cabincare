@@ -1,4 +1,10 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Pool } from 'pg';
 
 @Injectable()
@@ -21,8 +27,18 @@ export class CabinsService {
   }
   async getAllCabins() {
     const result = await this.pool.query(`SELECT * FROM cabins`);
-    console.log(result.rows)
     return result.rows;
+  }
+
+  async getCabinById(id: string) {
+    const number = Number(id);
+    if (isNaN(number)) throw new BadRequestException('Cabin id is invalid');
+    const result = await this.pool.query(`SELECT * FROM cabins WHERE id = $1`, [
+      number,
+    ]);
+    if (result.rows.length === 0)
+      throw new NotFoundException('cabin not found');
+    return result.rows[0];
   }
   //   async editCabin()
 }

@@ -6,7 +6,7 @@ docker compose build
 
 docker compose up -d
 
-docker-compose exec backend run seed
+docker compose exec backend run seed
 
 echo "All services are up!"
 echo "Frontend is at: http://localhost:3000"

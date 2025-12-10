@@ -9,19 +9,23 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b1610;
+    --foreground: #e8f5eb;
   }
-}
-body {
-  color: #f9f6f3;
 }
 
 @theme {
-  --color-cusgreen: #1c352d;
-  --color-cusgray: #a6b28b;
-  --color-cuspink: #f5c9b0;
-  --color-main: #f9f6f3;
+  --color-cusgreen: #38d37b;
+  --color-cusgray: #13251b;
+  --color-cuspink: #8ae6c0;
+  --color-main: #0b1610;
+}
+
+body {
+  color: #e8f5eb;
+  background: radial-gradient(circle at 20% 20%, #10261b 0, transparent 25%),
+    radial-gradient(circle at 80% 0%, #0f2319 0, transparent 20%),
+    #0b1610;
 }
 .scale:hover {
   animation: none;

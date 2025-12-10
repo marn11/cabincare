@@ -2,18 +2,16 @@ services:
   database:
     container_name: postgres
     image: postgres:15
-    env_file:
-      - ./db/.env
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: on-failure
+    env_file:
+      - ./db/.env.example
   backend:
     container_name: nestjs
     build: ./backend
-    env_file:
-      - ./backend/.env
     ports:
       - "3001:3001"
     depends_on:
@@ -27,8 +25,6 @@ services:
       - "3000:3000"
     depends_on:
       - backend
-    env_file:
-      - ./frontend/.env
     restart: on-failure
 
 # we use a volume for the frontend to allow for hot reload

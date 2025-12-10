@@ -1,12 +1,9 @@
 "use client";
-// import { Metadata } from "next";
+
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import Cabin from "@/app/components/Cabin";
 import Link from "next/link";
-// export const metadata: Metadata = {
-//   title: "Dashboard",
-// };
 
 export interface CabinType {
   id: number;
@@ -14,7 +11,6 @@ export interface CabinType {
   location: string;
   image: string;
 }
-// dir file dial types
 export default function Dashboard() {
   const [cabins, setCabins] = useState<CabinType[]>([]);
 

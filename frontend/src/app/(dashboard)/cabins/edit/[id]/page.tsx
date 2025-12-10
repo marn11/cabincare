@@ -61,7 +61,6 @@ export default function Page() {
     }
     redirect("/dashboard");
   };
-  // mli tsali redirecti luser ldik lcabin bdbt /cabin/id dialha
   return (
     <>
       <div className="flex items-center justify-center h-full w-full bg-main text-cusgreen">

@@ -17,7 +17,6 @@ import { getConnectionString } from './connection';
             location TEXT NOT NULL,
             image TEXT NOT NULL);
             `);
-        // image dir default chi image mstoria
         await pool.query(`CREATE TABLE IF NOT EXISTS tasks (
             id SERIAL PRIMARY KEY,
             cabin_id INT NOT NULL REFERENCES cabins(id) ON DELETE CASCADE,

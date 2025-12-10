@@ -12,7 +12,20 @@ const pool = new Pool({
 async function seed() {
   try {
     console.log('Seeding database...');
-
+    await pool.query(`CREATE TABLE IF NOT EXISTS cabins (
+            id SERIAL PRIMARY KEY,
+            cabin_name VARCHAR(255) NOT NULL UNIQUE,
+            location TEXT NOT NULL,
+            image TEXT NOT NULL);
+            `);
+    await pool.query(`CREATE TABLE IF NOT EXISTS tasks (
+            id SERIAL PRIMARY KEY,
+            cabin_id INT NOT NULL REFERENCES cabins(id) ON DELETE CASCADE,
+            description TEXT NOT NULL,
+            priority TEXT CHECK (priority IN ('HIGH', 'MEDIUM', 'LOW')),
+            status TEXT CHECK (status IN ('PENDING', 'IN_PROGRESS', 'COMPLETE'))
+            );
+            `);
     // Clear existing data
     await pool.query('DELETE FROM tasks;');
     await pool.query('DELETE FROM cabins;');

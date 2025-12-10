@@ -38,7 +38,6 @@ export default function Cabin({ cabin }: { cabin: CabinType }) {
         <div className="flex border border-cusgreen/20 rounded-xl overflow-hidden bg-main/60">
           <Image
             src={imageUrl || "/leaky.jpg"}
-            // mnb3d rdha image
             width={448}
             height={448}
             unoptimized

@@ -9,7 +9,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: on-failure
-  backend: 
+  backend:
     container_name: nestjs
     build: ./backend
     env_file:
@@ -19,7 +19,7 @@ services:
     depends_on:
       - database
     restart: on-failure
-    
+
   frontend:
     container_name: next.js
     build: ./frontend
@@ -32,8 +32,7 @@ services:
     restart: on-failure
 
 # we use a volume for the frontend to allow for hot reload
-# in case we made file changes inside the container 
-
+# in case we made file changes inside the container
 
 volumes:
   db_data:

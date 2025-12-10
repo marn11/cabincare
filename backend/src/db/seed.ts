@@ -1,11 +1,12 @@
 // backend/src/db/seed.ts
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import { getConnectionString } from './connection';
 
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: process.env.DB_URL,
+  connectionString: getConnectionString(),
 });
 
 async function seed() {

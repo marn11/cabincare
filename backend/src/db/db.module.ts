@@ -1,5 +1,6 @@
 import { Module, Global } from '@nestjs/common';
 import { Pool } from 'pg';
+import { getConnectionString } from './connection';
 
 @Global()
 @Module({
@@ -8,7 +9,7 @@ import { Pool } from 'pg';
       provide: 'PG_POOL',
       useFactory: async () => {
         const pool = new Pool({
-          connectionString: process.env.DB_URL,
+          connectionString: getConnectionString(),
         });
         await pool.query(`CREATE TABLE IF NOT EXISTS cabins (
             id SERIAL PRIMARY KEY,

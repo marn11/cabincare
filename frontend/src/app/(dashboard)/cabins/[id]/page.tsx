@@ -12,6 +12,7 @@ export interface TaskType {
   cabin_id: number;
   status: string;
   priority: string;
+  id?: number;
 }
 
 export default function Page() {
@@ -94,11 +95,11 @@ export default function Page() {
   
   return (
     <>
-      <div className="flex items-center border h-full">
+      <div className="flex items-center border border-cusgreen/20 h-full bg-main text-cusgreen rounded-2xl">
         {cabin ? <CabinViewer cabin={cabin}></CabinViewer> : <p>Loading...</p>}
-        <div className="border p-4 bg-cusgray flex-1 rounded-xl gap-2 m-2 flex flex-col h-120 overflow-auto text-black">
+        <div className="border border-cusgreen/20 p-4 bg-cusgray flex-1 rounded-2xl gap-3 m-2 flex flex-col h-120 overflow-auto shadow-inner">
           <div className="flex justify-between items-center">
-            <h2 className="text-black text-2xl font-bold">All tasks:</h2>
+            <h2 className="text-2xl font-bold">All tasks:</h2>
             <LogNewTask onOpen={() => setShowModal(true)} />
           </div>
           {tasks.map((task, i) => {
@@ -108,7 +109,7 @@ export default function Page() {
       </div>
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 w-96 text-black">
+          <div className="bg-cusgray rounded-2xl p-6 w-96 text-cusgreen shadow-xl border border-cusgreen/30">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -123,12 +124,12 @@ export default function Page() {
                 placeholder="task description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full p-2 border rounded-md mb-3"
+                className="w-full p-3 border border-cusgreen/20 rounded-xl mb-3 bg-main text-cusgreen focus:ring-2 focus:ring-cuspink/70 focus:outline-none"
               />
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
-                className="w-full p-2 border rounded-md mb-4"
+                className="w-full p-3 border border-cusgreen/20 rounded-xl mb-4 bg-main text-cusgreen focus:ring-2 focus:ring-cuspink/70 focus:outline-none"
               >
                 <option value="PENDING">Pending</option>
                 <option value="IN_PROGRESS">In progress</option>
@@ -137,7 +138,7 @@ export default function Page() {
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
-                className="w-full p-2 border rounded-md mb-4"
+                className="w-full p-3 border border-cusgreen/20 rounded-xl mb-4 bg-main text-cusgreen focus:ring-2 focus:ring-cuspink/70 focus:outline-none"
               >
                 <option value="LOW">Low</option>
                 <option value="MEDIUM">Medium</option>
@@ -146,7 +147,7 @@ export default function Page() {
               <div className="flex justify-end gap-2">
                 <button
                   type="button"
-                  className="px-4 py-2 bg-gray-300 rounded cursor-pointer"
+                  className="px-4 py-2 bg-main text-cusgreen border border-cusgreen/30 rounded-xl cursor-pointer hover:bg-cuspink/50"
                   onClick={() => {
                     setDescription("");
                     setShowModal(false);
@@ -156,7 +157,7 @@ export default function Page() {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-cuspink rounded text-black font-semibold cursor-pointer"
+                  className="px-4 py-2 bg-cusgreen text-main rounded-xl font-semibold cursor-pointer shadow-sm hover:-translate-y-0.5"
                 >
                   Save
                 </button>

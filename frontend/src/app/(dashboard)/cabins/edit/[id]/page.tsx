@@ -35,7 +35,7 @@ export default function Page() {
       await getCabinById(numId);
     };
     fetchCabin();
-  }, []);
+  }, [params.id]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!cabin) return;
@@ -64,52 +64,51 @@ export default function Page() {
   // mli tsali redirecti luser ldik lcabin bdbt /cabin/id dialha
   return (
     <>
-      <div className="flex items-center justify-center h-full w-full">
+      <div className="flex items-center justify-center h-full w-full bg-main text-cusgreen">
         <form
-          className="flex-col items-center justify-between p-4 h-fit w-fit rounded-xl border bg-cusgray"
+          className="flex-col items-center justify-between p-6 h-fit w-full max-w-xl rounded-2xl border border-cusgreen/25 bg-cusgray shadow-lg"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl font-bold text-black my-2 text-center">
-            Edit cabin:
-          </h2>
-          <div className="flex flex-col gap-5 text-black font-semibold">
-            <div className="flex gap-2 items-center">
-              <span className="w-15">Name:</span>
+          <h2 className="text-2xl font-bold my-2 text-center">Edit cabin</h2>
+          <div className="flex flex-col gap-5 font-semibold w-full">
+            <div className="flex flex-col gap-2">
+              <span className="text-sm font-semibold text-cusgreen/90">Name</span>
               <input
                 type="text"
                 placeholder={cabin?.cabin_name}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="focus:outline-none p-2 border rounded-xl placeholder:font-medium"
+                className="focus:outline-none p-3 border border-cusgreen/20 rounded-xl placeholder:font-medium bg-main text-cusgreen focus:ring-2 focus:ring-cuspink/70"
               />
             </div>
-            <div className="flex gap-2 items-center">
-              <span className="w-15">Location:</span>
+            <div className="flex flex-col gap-2">
+              <span className="text-sm font-semibold text-cusgreen/90">Location</span>
               <input
                 type="text"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder={cabin?.location}
-                className="focus:outline-none p-2 border rounded-xl placeholder:font-medium"
+                className="focus:outline-none p-3 border border-cusgreen/20 rounded-xl placeholder:font-medium bg-main text-cusgreen focus:ring-2 focus:ring-cuspink/70"
               />
             </div>
-            <div className="flex gap-2 items-center">
-              <span className="w-15">Image:</span>
-              <div className="flex relative justify-center group">
+            <div className="flex flex-col gap-2">
+              <span className="text-sm font-semibold text-cusgreen/90">Image</span>
+              <div className="flex relative justify-start gap-4 items-center">
                 {/* eslint@next/next/no-img-element */}
                 <img
-                  className="my-2 border-2 rounded-full relative aspect-square object-cover border-cusgreen group-hover:grayscale transition duration-200 ease-in-out cursor-pointer"
+                  className="my-2 border-2 rounded-full aspect-square object-cover border-cusgreen/50 w-24 h-24 bg-main"
                   src={imageUrl || "/leaky.jpg"}
-                  width={128}
-                  height={128}
-                  alt="profile pic"
+                  width={96}
+                  height={96}
+                  alt="current cabin"
                 ></img>
                 <label
                   htmlFor="Image"
-                  className="cursor-pointer absolute top-1/2"
+                  className="cursor-pointer px-4 py-2 rounded-xl bg-cusgreen text-main font-semibold shadow-sm hover:-translate-y-0.5 transition border border-cusgreen/40"
                 >
-                  <div className="opacity-0 group-hover:opacity-100 transition duration-200 ease-in-out">
-                    <Camera color="black" />
+                  <div className="flex items-center gap-2">
+                    <Camera color="#0b1610" />
+                    <span>Update image</span>
                   </div>
                   <input
                     id="Image"
@@ -139,12 +138,12 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center m-4">
-            <button className="border p-2 rounded-xl cursor-pointer">
+          <div className="flex items-center justify-end mt-6 w-full">
+            <button className="px-5 py-3 bg-cusgreen font-semibold text-main rounded-xl cursor-pointer shadow-sm hover:-translate-y-0.5 transition border border-cusgreen/40">
               Submit
             </button>
           </div>
-          {/* onclick sumbit the post request */}
+          {/* onclick submit the post request */}
         </form>
       </div>
     </>

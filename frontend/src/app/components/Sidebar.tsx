@@ -15,13 +15,13 @@ export default function Sidebar({
       {/* Overlay */}
       <div
         onClick={onClose}
-        className={`fixed inset-0 bg-black/40 z-40 transition-opacity ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} 
+        className={`fixed inset-0 bg-black/60 z-40 transition-opacity ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} 
         lg:hidden`}
       />
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-screen w-64 z-50 flex flex-col bg-white border-r border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 lg:static lg:block`}
+        className={`fixed top-0 left-0 h-screen w-64 z-50 flex flex-col bg-cusgray border-r border-cusgreen/20 shadow-lg transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 lg:static lg:block`}
       >
         {/* Header */}
         <div className="p-4 flex justify-between items-center">
@@ -42,7 +42,7 @@ export default function Sidebar({
           {/* Close button (mobile only) */}
           <button
             onClick={onClose}
-            className="lg:hidden text-gray-600 dark:text-neutral-300 cursor-pointer"
+            className="lg:hidden text-cusgreen cursor-pointer"
           >
             ✕
           </button>
@@ -55,7 +55,7 @@ export default function Sidebar({
             <li>
               <Link
                 href="/"
-                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg text-gray-800 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-neutral-700 active:bg-gray-200 dark:active:bg-neutral-700 focus:bg-gray-200 dark:focus:bg-neutral-700 focus:text-gray-900 dark:focus:text-white"
+                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg text-cusgreen hover:bg-cusgreen/15 active:bg-cusgreen/20 focus:bg-cusgreen/15 focus:text-cusgreen transition"
               >
                 <Home/>
                 Home
@@ -66,7 +66,7 @@ export default function Sidebar({
             <li>
               <Link
                 href="/cabins/create  "
-                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg text-gray-800 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-neutral-700 active:bg-gray-200 dark:active:bg-neutral-700 focus:bg-gray-200 dark:focus:bg-neutral-700 focus:text-gray-900 dark:focus:text-white"
+                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg text-cusgreen hover:bg-cusgreen/15 active:bg-cusgreen/20 focus:bg-cusgreen/15 focus:text-cusgreen transition"
               >
                 <Plus/>
                 Create cabin

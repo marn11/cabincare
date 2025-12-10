@@ -41,26 +41,19 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="text-black h-full flex flex-col gap-4">
+      <div className="text-cusgreen h-full flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-medium text-cuspink">
-            Latest cabins added:{" "}
-          </h1>
+          <h1 className="text-2xl font-semibold">Latest cabins added</h1>
           <Link href={"/cabins/create"}>
-          <button className="flex items-center px-4 py-2 rounded-xl bg-cuspink gap-2 cursor-pointer hover:bg-cuspink/80 transition ease-in-out">
-            <Plus color="black" strokeWidth={3} />
-            <span className="text-black font-semibold">New cabin</span>
-          </button>
+            <button className="flex items-center px-4 py-2 rounded-xl bg-cusgreen text-main gap-2 cursor-pointer hover:-translate-y-0.5 transition ease-in-out shadow-sm border border-cusgreen/40">
+              <Plus color="#0b1610" strokeWidth={3} />
+              <span className="font-semibold">New cabin</span>
+            </button>
           </Link>
         </div>
-        <div className="flex gap-2 flex-wrap overflow-auto min-h-0 border p-2 bg-cuspink rounded-lg flex-1">
+        <div className="flex gap-3 flex-wrap overflow-auto min-h-0 border border-cusgreen/20 p-4 bg-cusgray rounded-2xl flex-1 shadow-inner">
           {cabins.map((cabin, i) => {
-            return (
-              <Cabin
-                key={i}
-                cabin={cabin}
-              />
-            );
+            return <Cabin key={i} cabin={cabin} />;
           })}
         </div>
       </div>

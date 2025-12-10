@@ -18,7 +18,7 @@ export default function Task({ task }: { task: TaskType }) {
     const newStatus = { status };
     try {
       const res = await fetch(
-        process.env.NEXT_PUBLIC_BACKEND_URL! + `tasks/${task.cabin_id}`,
+        process.env.NEXT_PUBLIC_BACKEND_URL! + `tasks/${task.id}`,
         {
           method: "PUT",
           headers: { "Content-type": "application/json" },
@@ -37,29 +37,29 @@ export default function Task({ task }: { task: TaskType }) {
   };
   return (
     <>
-      <div className="flex items-center justify-between border p-2">
-        <div>
-          <h3>
-            Description: <span>{task.description}</span>
+      <div className="flex items-center justify-between border border-cusgreen/20 bg-cusgray rounded-2xl p-4 shadow-sm">
+        <div className="space-y-2 text-cusgreen">
+          <h3 className="font-semibold">
+            Description: <span className="font-medium text-white/90">{task.description}</span>
           </h3>
-          <h3 className="flex gap-2">
-            Status: <span>{savedStatus}</span>
-            {task.status === "PENDING" && <BadgeX color="red" />}
-            {task.status === "IN_PROGRESS" && <Badge color="black" />}
-            {task.status === "COMPLETE" && <BadgeCheck color="green" />}
+          <h3 className="flex gap-2 items-center">
+            Status: <span className="font-semibold text-white/90">{savedStatus}</span>
+            {task.status === "PENDING" && <BadgeX color="#f87171" />}
+            {task.status === "IN_PROGRESS" && <Badge color="#38d37b" />}
+            {task.status === "COMPLETE" && <BadgeCheck color="#22c55e" />}
           </h3>
-          <h3 className="flex gap-2">
-            Priority: <span>{task.priority}</span>
-            {task.priority === "HIGH" && <MoveUpRight color="red" />}
-            {task.priority === "MEDIUM" && <MoveHorizontal color="black" />}
-            {task.priority === "LOW" && <MoveDownRight color="green" />}
+          <h3 className="flex gap-2 items-center">
+            Priority: <span className="font-semibold text-white/90">{task.priority}</span>
+            {task.priority === "HIGH" && <MoveUpRight color="#f87171" />}
+            {task.priority === "MEDIUM" && <MoveHorizontal color="#8ae6c0" />}
+            {task.priority === "LOW" && <MoveDownRight color="#22c55e" />}
           </h3>
         </div>
         <EditTask onOpen={() => setShowEdit(true)} />
       </div>
       {showEdit && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 w-96 text-black">
+          <div className="bg-cusgray rounded-2xl p-6 w-96 text-cusgreen shadow-xl border border-cusgreen/30">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -71,7 +71,7 @@ export default function Task({ task }: { task: TaskType }) {
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
-                className="w-full p-2 border rounded-md mb-4"
+                className="w-full p-3 border border-cusgreen/20 rounded-xl mb-4 bg-main text-cusgreen focus:ring-2 focus:ring-cuspink/70 focus:outline-none"
               >
                 <option value="PENDING">Pending</option>
                 <option value="IN_PROGRESS">In progress</option>
@@ -80,7 +80,7 @@ export default function Task({ task }: { task: TaskType }) {
               <div className="flex justify-end gap-2">
                 <button
                   type="button"
-                  className="px-4 py-2 bg-gray-300 rounded cursor-pointer"
+                  className="px-4 py-2 bg-main text-cusgreen border border-cusgreen/30 rounded-xl cursor-pointer hover:bg-cuspink/50"
                   onClick={() => {
                     setStatus(task.status);
                     setShowEdit(false);
@@ -90,7 +90,7 @@ export default function Task({ task }: { task: TaskType }) {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-cuspink rounded text-black font-semibold cursor-pointer"
+                  className="px-4 py-2 bg-cusgreen text-main rounded-xl font-semibold cursor-pointer shadow-sm hover:-translate-y-0.5"
                 >
                   Save
                 </button>

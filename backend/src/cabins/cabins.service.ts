@@ -10,12 +10,12 @@ import { Pool } from 'pg';
 @Injectable()
 export class CabinsService {
   constructor(@Inject('PG_POOL') private pool: Pool) {}
-  async newCabin(name: string, location: string, image: string) {
+  async newCabin(name: string, location: string, image: string | null) {
     try {
       const result = await this.pool.query(
         `INSERT INTO cabins (cabin_name, 
         location, image) VALUES ($1, $2, $3) RETURNING *`,
-        [name, location, image],
+        [name, location, image ?? null],
       );
       return result.rows[0];
     } catch (e: any) {
@@ -40,5 +40,40 @@ export class CabinsService {
       throw new NotFoundException('cabin not found');
     return result.rows[0];
   }
-  //   async editCabin()
+  async editCabin(
+    id: string,
+    data: { name?: string; location?: string; image?: string | null },
+  ) {
+    const number = Number(id);
+    if (isNaN(number)) throw new BadRequestException('invalid cabin id');
+    const doesExist = await this.getCabinById(id);
+    const fields = [];
+    const values = [];
+    let index = 1;
+    if (data.name) {
+      fields.push(`cabin_name = $${index++}`);
+      values.push(data.name);
+    }
+    if (data.location) {
+      fields.push(`location = $${index++}`);
+      values.push(data.location);
+    }
+    if (data.image) {
+      fields.push(`image = $${index++}`);
+      values.push(data.image);
+    }
+    if (fields.length === 0) {
+      throw new BadRequestException('no fields to update');
+    }
+    const query = `UPDATE cabins
+    SET ${fields.join(', ')}
+    WHERE id = $${index}
+    RETURNING *`;
+
+    values.push(number);
+
+    const result = await this.pool.query(query, values);
+
+    return result.rows[0];
+  }
 }

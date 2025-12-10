@@ -9,8 +9,4 @@ export class CabinDto {
   @IsString()
   @IsNotEmpty()
   location: string;
-
-  @IsString()
-  @IsNotEmpty()
-  image: string;
 }

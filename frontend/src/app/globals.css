@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -14,16 +13,15 @@
     --foreground: #ededed;
   }
 }
-body{
-  color: #F9F6F3;
+body {
+  color: #f9f6f3;
 }
 
-
 @theme {
-  --color-cusgreen: #1C352D;
-  --color-cusgray: #A6B28B;
-  --color-cuspink: #F5C9B0;
-  --color-main: #F9F6F3;
+  --color-cusgreen: #1c352d;
+  --color-cusgray: #a6b28b;
+  --color-cuspink: #f5c9b0;
+  --color-main: #f9f6f3;
 }
 .scale:hover {
   animation: none;
@@ -35,11 +33,11 @@ body{
 }
 
 @keyframes scale-breathe {
-    0%,
-    100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
+  0%,
+  100% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.05);
+  }
+}
